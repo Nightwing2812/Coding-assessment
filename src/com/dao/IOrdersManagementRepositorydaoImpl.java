@@ -29,7 +29,7 @@ public class IOrdersManagementRepositorydaoImpl implements IOrdersManagementRepo
 	public List<Orders> getOrderDetails(int uid) throws SQLException {
 		Connection conn=DBUtil.getDBConn();
 		List<Orders> list = new ArrayList<>();
-		String sql = "select * from product where userid=?";
+		String sql = "select * from orders where userId=?";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		pstmt.setInt(1, uid);
 		ResultSet rst = pstmt.executeQuery();

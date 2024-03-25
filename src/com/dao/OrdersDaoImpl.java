@@ -97,7 +97,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	
 	public void insertUser(String name, String password, String role) throws SQLException {
 		Connection conn=DBUtil.getDBConn();
-		String sql="insert into orders values(?,?,?)";
+		String sql="insert into user (userName,password,role) values(?,?,?)";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		pstmt.setString(1,name);
 		pstmt.setString(2,password);
