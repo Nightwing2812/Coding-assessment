@@ -38,7 +38,7 @@ public class UserController {
 				List<Product> list2 = userService.fetchAllProducts();
 
 				for (Product e : list2) {
-					System.out.println(e.getProductId() + "   " + e.getProductName()+"   "+e.getDescription()+"    "+"Available stock   "+e.getQuantityInStock()+"Price/product"+"   "+e.getPrice());
+					System.out.println(e.getProductId() + "   " + e.getProductName()+"   "+e.getDescription()+"    "+e.getQuantityInStock()+"    "+e.getPrice()+"    "+e.getType());
 				}
 				System.out.println("Give the Id of the Product you want to Buy ");
 				int productId = sc.nextInt();
@@ -50,7 +50,7 @@ public class UserController {
 					break;
 				}
 				userService.insertOrder(productId,userId,numOfItems,list2);
-				System.out.println("Ticket Booked Successfully");
+				System.out.println("Order Created Successfully");
 				userService.updateAvailableProduct(list2,productId,numOfItems);
 			}
 			catch (Exception e) {
@@ -69,20 +69,31 @@ public class UserController {
 					System.out.println("Product not deleted");
 				}
 				System.out.println("Order Deleted");
-				}}
+				}
+				}
 				catch(Exception e) {
 					System.out.println(e.getMessage());
 				}
 				
 			
 			case 3:
+				System.out.println("Enter Name: ");
+				String name=sc.nextLine();
+				sc.nextLine();
+				System.out.println("Enter Password: ");
+				String password=sc.nextLine();
+				String role = "User";
+				try {
+				userService.insertUser(name,password,role);
+				System.out.println("User Inserted Successfully ");
+				}
+				catch (Exception e) {
+					System.out.println(e.getMessage());
+					
+				}
 				
 				
-				
-				
-				
-
-	}
+			}
 
 }
 		sc.close();

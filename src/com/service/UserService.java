@@ -12,7 +12,7 @@ import com.model.User;
 public class UserService {
 	
 	OrdersDao ordersdao=new OrdersDaoImpl();
-	private int userId1;
+	int userId1;
 	public User validateUser(int userId) throws InvalidIdException, SQLException {
 		return ordersdao.validateCustomer(userId);
 		
@@ -58,6 +58,11 @@ public class UserService {
 	public boolean deleteOrder(int userId1) throws SQLException {
 		this.userId1=userId1;
 		return ordersdao.deleteOrder(userId1);
+		
+	}
+
+	public void insertUser(String name, String password, String role) throws SQLException {
+		ordersdao.insertUser(name,password,role);
 		
 	}
 

@@ -18,6 +18,8 @@ public interface OrdersDao {
 	public void updateAvailableProduct(int productId, int i) throws SQLException;
 
 	public boolean deleteOrder(int userId1) throws SQLException;
+
+	public void insertUser(String name, String password, String role) throws SQLException;
 	
 	
 

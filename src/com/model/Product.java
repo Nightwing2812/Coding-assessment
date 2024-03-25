@@ -1,7 +1,5 @@
 package com.model;
 
-import java.util.List;
-
 public class Product {
 	private int productId;
 	private String productName;
@@ -36,6 +34,11 @@ public class Product {
 		this.quantityInStock = quantityInStock;
 		this.type = type;
 	}
+	public Product() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public int getProductId() {
 		return productId;
 	}

@@ -44,10 +44,12 @@ public class OrdersDaoImpl implements OrdersDao {
 		while (rst.next()) { 
 			int ProductId= rst.getInt("productId");
 			String Productname = rst.getString("productName");
+			String Description = rst.getString("description");
 			Double price = rst.getDouble("price");
 			int quantityInStock= rst.getInt("quantityInStock");
+			String type = rst.getString("type");
 			
-			Product pd = new Product(ProductId,Productname,price,quantityInStock);
+			Product pd = new Product(ProductId,Productname,Description,price,quantityInStock,type);
 			list.add(pd);
 		}
 		DBUtil.dbClose();
@@ -57,7 +59,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	public void insertOrder(int productId, int userId, int numOfItems, double totalPrice) throws SQLException {
 		Connection conn=DBUtil.getDBConn();
 
-		String sql="insert into orders values(?,?,?,?)";
+		String sql="insert into orders(productId,userId,quantity,totalPrice) values(?,?,?,?)";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		pstmt.setInt(1,productId);
 		pstmt.setInt(2,userId);
@@ -71,7 +73,7 @@ public class OrdersDaoImpl implements OrdersDao {
 	
 	public void updateAvailableProduct(int productId, int i) throws SQLException {
 		Connection conn=DBUtil.getDBConn();
-		String sql="update product set quantity_in_stock=? where productId=?";
+		String sql="update product set quantityInStock=? where productId=?";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		pstmt.setInt(1,i);
 		pstmt.setInt(2, productId);
@@ -90,8 +92,21 @@ public class OrdersDaoImpl implements OrdersDao {
 		
 		DBUtil.dbClose();
 		return true;
-
+		
+		}
+	
+	public void insertUser(String name, String password, String role) throws SQLException {
+		Connection conn=DBUtil.getDBConn();
+		String sql="insert into orders values(?,?,?)";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1,name);
+		pstmt.setString(2,password);
+		pstmt.setString(3,role);
+		pstmt.executeUpdate();
+		
+		DBUtil.dbClose();
 	}
+	
 
 	
 
