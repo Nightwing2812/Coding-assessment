@@ -16,6 +16,7 @@ public class Orders {
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
 	}
+	
 	public int getProductId() {
 		return productId;
 	}

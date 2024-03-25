@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.model.Orders;
 import com.model.Product;
+import com.model.User;
 import com.service.OrderService;
 import com.service.UserService;
 
@@ -17,7 +19,7 @@ public class OrdersController {
 			System.out.println("Press 1 to Create Product");
 			System.out.println("Press 2 to Fetch Product");
 			System.out.println("Press 3 to Fetch Order By User");
-			System.out.println("Enter 0 for exit");
+			System.out.println("Enter 0 for exit");	
 			System.out.println("********************************************");
 			int input = sc.nextInt();
 			if (input == 0) {
@@ -55,6 +57,17 @@ public class OrdersController {
 				for (Product e : list2) {
 					System.out.println(e.getProductId() + "   " + e.getProductName()+"   "+e.getDescription()+"    "+e.getQuantityInStock()+"    "+e.getPrice()+"    "+e.getType());
 				}
+				
+			case 3:
+				System.out.println("Enter User Id: ");
+				int uid=sc.nextInt();
+				User c = userService.validateUser(uid);
+				
+				List<Orders> list=new orderService.getOrderDetails(uid);
+				for (Orders e : list) {
+					System.out.println(e.getProductId()+"     "+e.getUserId()+"     "+e.getQuantity()+"    "+e.getTotalPrice());
+				}
+				
 			
 	}
 			}
